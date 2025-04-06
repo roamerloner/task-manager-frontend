@@ -1,0 +1,37 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #222;
+  color: #fff;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #222;
+  color: #fff;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* SweetAlert2 customization */
+.swal2-popup {
+  background-color: #333 !important;
+  color: #fff !important;
+}
+
+.swal2-title, .swal2-content {
+  color: #fff !important;
+}
+
+.swal2-confirm, .swal2-cancel {
+  color: #fff !important;
+}
