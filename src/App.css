@@ -1,4 +1,4 @@
-/* Base styles */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,22 +7,22 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #222; /* Dark background */
-  color: #fff; /* White text */
+  background-color: #222; 
+  color: #fff; 
 }
 
-/* App container */
+
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #222; /* Dark background */
+  background-color: #222; 
 }
 
-/* Error message */
+
 .error-message {
-  background-color: rgba(220, 53, 69, 0.2); /* Semi-transparent red */
-  color: #ff6b6b; /* Light red text */
+  background-color: rgba(220, 53, 69, 0.2); 
+  color: #ff6b6b; 
   padding: 10px 15px;
   margin-bottom: 10px;
   border-radius: 4px;
@@ -40,21 +40,21 @@ body {
   cursor: pointer;
 }
 
-/* Main content */
+
 .main-content {
   display: flex;
   flex: 1;
 }
 
-/* Task list */
+
 .task-list {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
-  background-color: #333; /* Darker background for task list */
+  background-color: #333; 
 }
 
-/* Tasks heading */
+
 .tasks-heading {
   font-size: 28px;
   font-weight: bold;
@@ -79,9 +79,9 @@ body {
   gap: 10px;
 }
 
-/* Task item */
+
 .task-item {
-  background-color: #555; /* Darker background for task items */
+  background-color: #555; 
   border-radius: 4px;
   padding: 10px 15px;
   display: flex;
@@ -155,11 +155,11 @@ body {
   font-size: 12px;
 }
 
-/* Task form */
+
 .task-form {
   width: 350px;
   padding: 20px;
-  background-color: #333; /* Darker background for form */
+  background-color: #333; 
   border-left: 1px solid #444;
 }
 
@@ -232,7 +232,7 @@ body {
   cursor: pointer;
 }
 
-/* Loading indicator */
+
 .loading {
   display: flex;
   justify-content: center;

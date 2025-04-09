@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// Create an axios instance with base URL and default headers
+
 const api = axios.create({
   baseURL: 'http://localhost:8000/api',
   headers: {
@@ -9,7 +9,7 @@ const api = axios.create({
   }
 });
 
-// Add request interceptor for debugging
+
 api.interceptors.request.use(
   config => {
     console.log('API Request:', config.method.toUpperCase(), config.url, config.data || {});
@@ -21,7 +21,7 @@ api.interceptors.request.use(
   }
 );
 
-// Add response interceptor for debugging
+
 api.interceptors.response.use(
   response => {
     console.log('API Response:', response.status, response.data);
@@ -33,13 +33,13 @@ api.interceptors.response.use(
   }
 );
 
-// API functions
+
 export const apiService = {
-  // Project endpoints
+  
   getProjects: () => api.get('/projects'),
   createProject: (data) => api.post('/projects', data),
   
-  // Task endpoints
+  
   getTasks: (projectId) => api.get(`/tasks?project_id=${projectId}`),
   createTask: (data) => api.post('/tasks', data),
   updateTask: (id, data) => api.put(`/tasks/${id}`, data),

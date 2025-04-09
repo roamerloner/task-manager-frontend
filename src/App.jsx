@@ -14,12 +14,12 @@ function App() {
   const [error, setError] = useState(null);
   const [pendingDeletes, setPendingDeletes] = useState(new Set());
 
-  // Fetch projects on component mount
+  
   useEffect(() => {
     fetchProjects();
   }, []);
 
-  // Fetch tasks when selected project changes
+  
   useEffect(() => {
     if (selectedProject) {
       fetchTasks();
@@ -28,7 +28,7 @@ function App() {
     }
   }, [selectedProject]);
 
-  // Fetch all projects
+  
   const fetchProjects = async () => {
     try {
       setLoading(true);
@@ -36,7 +36,7 @@ function App() {
       const response = await apiService.getProjects();
       setProjects(response.data);
       
-      // Select the first project by default if available
+      
       if (response.data.length > 0 && !selectedProject) {
         setSelectedProject(response.data[0].id);
       }
@@ -56,7 +56,7 @@ function App() {
     }
   };
 
-  // Fetch tasks for the selected project
+  
   const fetchTasks = async () => {
     if (!selectedProject) return;
     
@@ -81,13 +81,13 @@ function App() {
     }
   };
 
-  // Handle form submission (create or update task)
+  
   const handleSubmitTask = async (formData) => {
     try {
       setError(null);
       
       if (editingTask) {
-        // Update existing task
+        
         const response = await apiService.updateTask(editingTask.id, formData);
         setTasks(prevTasks => 
           prevTasks.map(task => task.id === editingTask.id ? response.data : task)
@@ -101,7 +101,7 @@ function App() {
           color: '#fff'
         });
       } else {
-        // Create new task
+        
         const response = await apiService.createTask(formData);
         setTasks(prevTasks => [...prevTasks, response.data]);
         Swal.fire({
@@ -114,7 +114,7 @@ function App() {
         });
       }
       
-      // Clear form and editing state
+      
       setEditingTask(null);
     } catch (err) {
       setError('Failed to save task. Please try again.');
@@ -130,22 +130,22 @@ function App() {
     }
   };
 
-  // Handle task deletion with protection against duplicate calls
+  
   const handleDeleteTask = useCallback(async (id) => {
-    // Prevent duplicate delete requests (important for StrictMode)
+    
     if (pendingDeletes.has(id)) {
       console.log('Delete already in progress for task:', id);
       return;
     }
     
     try {
-      // Mark this task as being deleted
+      
       setPendingDeletes(prev => new Set(prev).add(id));
       setError(null);
       
       await apiService.deleteTask(id);
       
-      // Remove the deleted task from state
+      
       setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
       
       Swal.fire({
@@ -168,7 +168,7 @@ function App() {
       });
       console.error('Error deleting task:', err);
     } finally {
-      // Remove this task from the pending deletes set
+      
       setPendingDeletes(prev => {
         const newSet = new Set(prev);
         newSet.delete(id);
@@ -177,18 +177,18 @@ function App() {
     }
   }, [pendingDeletes]);
 
-  // Handle task reordering
+  
   const handleReorderTasks = async (oldIndex, newIndex) => {
-    // Create a new array with the updated order
+    
     const newTasks = [...tasks];
     const [movedTask] = newTasks.splice(oldIndex, 1);
     newTasks.splice(newIndex, 0, movedTask);
     
-    // Update the UI immediately
+    
     setTasks(newTasks);
     
     try {
-      // Send the reorder request to the backend
+      
       await apiService.reorderTasks({
         tasks: newTasks.map(task => task.id),
         project_id: selectedProject
@@ -204,18 +204,18 @@ function App() {
         color: '#fff'
       });
       console.error('Error reordering tasks:', err);
-      // Revert to the original order if there's an error
+      
       fetchTasks();
     }
   };
 
-  // Get the selected project name
+  
   const getSelectedProjectName = () => {
     const project = projects.find(p => p.id === selectedProject);
     return project ? project.name : '';
   };
 
-  // Show loading indicator
+  
   if (loading && projects.length === 0) {
     return <div className="loading">Loading...</div>;
   }

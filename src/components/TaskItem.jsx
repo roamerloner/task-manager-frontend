@@ -57,7 +57,7 @@ function TaskItem({ task, projectName, onEdit, onDelete }) {
     e.preventDefault();
     e.stopPropagation();
     
-    // Use SweetAlert2 for confirmation
+    
     Swal.fire({
       title: 'Are you sure?',
       text: `Do you want to delete "${task.name}"?`,
@@ -81,7 +81,7 @@ function TaskItem({ task, projectName, onEdit, onDelete }) {
       style={style}
       className="task-item"
     >
-      {/* Draggable part */}
+      
       <div {...attributes} {...listeners} className="task-draggable-area">
         <div className="task-info">
           <div className="task-project">{projectName}</div>
@@ -92,7 +92,7 @@ function TaskItem({ task, projectName, onEdit, onDelete }) {
         </div>
       </div>
       
-      {/* Non-draggable buttons area */}
+      
       <div className="task-actions">
         <button 
           className="edit-btn"
